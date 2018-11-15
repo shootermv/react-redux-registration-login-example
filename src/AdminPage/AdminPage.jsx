@@ -2,16 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { userActions } from '../_actions';
+import { userActions, taskActions } from '../_actions';
+
 
 class AdminPage extends React.Component {
     componentDidMount() {
         this.props.dispatch(userActions.getAll());
+        this.props.dispatch(taskActions.getAll());
     }
 
     render() {
-        const { user, users } = this.props;
+        const { user, users, tasks } = this.props;
         return (<div>
+        
                 <h3>All registered users:</h3>
                 {users.loading && <em>Loading users...</em>}
                 {users.error && <span className="text-danger">ERROR: {users.error}</span>}
@@ -28,11 +31,12 @@ class AdminPage extends React.Component {
     }
 }
 function mapStateToProps(state) {
-    const { users, authentication } = state;
+    const { users, authentication, tasks } = state;
     const { user } = authentication;
     return {
         user,
-        users
+        users,
+        tasks
     };
 }
 

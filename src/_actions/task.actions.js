@@ -6,9 +6,6 @@ import { history } from '../_helpers';
 */
 
 export const taskActions = {
-   /* login,
-    logout,
-    register,*/
     getAll,
     delete: _delete
 };

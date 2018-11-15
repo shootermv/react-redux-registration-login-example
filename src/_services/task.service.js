@@ -3,9 +3,6 @@ import { authHeader } from '../_helpers';
 
 export const taskService = {
     getAll,
-    /*getById,
-    update,
-    create,*/
     delete: _delete
 };
 
@@ -19,28 +16,6 @@ function getAll() {
     return fetch(`${config.apiUrl}/tasks`, requestOptions).then(handleResponse);
 }
 
-/*
-function getById(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-
-    return fetch(`${config.apiUrl}/tasks/${id}`, requestOptions).then(handleResponse);
-}*/
-
-/*
-function update(task) {
-    const requestOptions = {
-        method: 'PUT',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(task)
-    };
-
-    return fetch(`${config.apiUrl}/tasks/${task.id}`, requestOptions).then(handleResponse);;
-}
-*/
-// prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
     const requestOptions = {
         method: 'DELETE',
