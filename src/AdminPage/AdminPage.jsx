@@ -14,7 +14,19 @@ class AdminPage extends React.Component {
     render() {
         const { user, users, tasks } = this.props;
         return (<div>
-        
+                 <h3>All tasks:</h3>
+                {tasks.loading && <em>Loading tasks...</em>}
+                {tasks.error && <span className="text-danger">ERROR: {tasks.error}</span>}
+                {tasks.items &&
+                    <ul>
+                        {tasks.items.map((task, index) =>
+                            <li key={task.id}>
+                                {task.summary}
+                            </li>
+                        )}
+                    </ul>
+                }    
+                <hr/>   
                 <h3>All registered users:</h3>
                 {users.loading && <em>Loading users...</em>}
                 {users.error && <span className="text-danger">ERROR: {users.error}</span>}

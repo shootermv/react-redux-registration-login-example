@@ -1,12 +1,13 @@
 import { taskConstants } from '../_constants';
 
-export function users(state = {}, action) {
+export function tasks(state = {}, action) {
   switch (action.type) {
     case taskConstants.GETALL_REQUEST:
       return {
         loading: true
       };
     case taskConstants.GETALL_SUCCESS:
+      console.log(`action: `, action.tasks)
       return {
         items: action.tasks
       };

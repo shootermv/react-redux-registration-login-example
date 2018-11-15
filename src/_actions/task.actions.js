@@ -23,7 +23,10 @@ function getAll() {
     };
 
     function request() { return { type: taskConstants.GETALL_REQUEST } }
-    function success(tasks) { return { type: taskConstants.GETALL_SUCCESS, tasks } }
+    function success(tasks) { 
+        console.log(`tasks service:`, tasks)
+        return { type: taskConstants.GETALL_SUCCESS, tasks }
+     }
     function failure(error) { return { type: taskConstants.GETALL_FAILURE, error } }
 }
 
