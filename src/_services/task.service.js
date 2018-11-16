@@ -3,6 +3,7 @@ import { authHeader } from '../_helpers';
 
 export const taskService = {
     getAll,
+    createTask,
     delete: _delete
 };
 
@@ -11,6 +12,16 @@ function getAll() {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
+    };
+
+    return fetch(`${config.apiUrl}/tasks`, requestOptions).then(handleResponse);
+}
+
+function createTask(summary) {
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader(),
+        body: summary
     };
 
     return fetch(`${config.apiUrl}/tasks`, requestOptions).then(handleResponse);

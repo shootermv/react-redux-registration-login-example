@@ -6,14 +6,45 @@ import { userActions, taskActions } from '../_actions';
 
 
 class AdminPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.reload = false;
+        this.state = {
+          summary: '',
+        };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.save = this.save.bind(this);
+    }
+
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+    }
+    
     componentDidMount() {
         this.props.dispatch(userActions.getAll());
         this.props.dispatch(taskActions.getAll());
     }
 
+    save(e) {
+        e.preventDefault();
+        this.state.summary && this.props.dispatch(taskActions.createTask(this.state.summary));
+    }
+
     render() {
         const { user, users, tasks } = this.props;
         return (<div>
+                <form>
+                    <input name="summary" name="summary" value={this.state.summary} placeholder="what is the task"
+         onChange={this.handleInputChange}/>
+                    <button onClick={e => this.save(e)}>Save</button>
+                </form>
+                <hr/>
                  <h3>All tasks:</h3>
                 {tasks.loading && <em>Loading tasks...</em>}
                 {tasks.error && <span className="text-danger">ERROR: {tasks.error}</span>}

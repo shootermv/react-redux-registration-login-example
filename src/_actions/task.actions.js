@@ -7,6 +7,7 @@ import { history } from '../_helpers';
 
 export const taskActions = {
     getAll,
+    createTask,
     delete: _delete
 };
 
@@ -30,6 +31,24 @@ function getAll() {
     function failure(error) { return { type: taskConstants.GETALL_FAILURE, error } }
 }
 
+function createTask(summary) {
+    return dispatch => {
+        dispatch(request(summary));
+
+        taskService.createTask(summary)
+            .then(
+                tasks => dispatch(success(task)),
+                error => dispatch(failure(error.toString()))
+            );
+    };
+
+    function request(summary) { return { type: taskConstants.CREATE_REQUEST, summary } }
+    function success(task) { 
+        console.log(`CREATE task service:`, task)
+        return { type: taskConstants.CREATE_SUCCESS, task }
+     }
+    function failure(error) { return { type: taskConstants.GETALL_FAILURE, error } }    
+}
 // prefixed function name with underscore because delete is a reserved word in javascript
 
 function _delete(id) {

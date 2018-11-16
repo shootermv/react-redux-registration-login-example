@@ -2,12 +2,12 @@ import { taskConstants } from '../_constants';
 
 export function tasks(state = {}, action) {
   switch (action.type) {
+    // GETALL  
     case taskConstants.GETALL_REQUEST:
       return {
         loading: true
       };
     case taskConstants.GETALL_SUCCESS:
-      console.log(`action: `, action.tasks)
       return {
         items: action.tasks
       };
@@ -15,6 +15,8 @@ export function tasks(state = {}, action) {
       return { 
         error: action.error
       };
+
+    // DELETE  
     case taskConstants.DELETE_REQUEST:
       // add 'deleting:true' property to user being deleted
       return {
@@ -45,6 +47,25 @@ export function tasks(state = {}, action) {
           return task;
         })
       };
+
+
+    // CREATE
+    case taskConstants.CREATE_REQUEST:
+      return {
+        loading: true
+      };
+    case taskConstants.CREATE_SUCCESS:
+      return {
+        items: [
+            action.task, 
+            ...action.tasks
+        ]
+      };
+    case taskConstants.CREATE_FAILURE:
+      return { 
+        error: action.error
+      };    
+    
     default:
       return state
   }
