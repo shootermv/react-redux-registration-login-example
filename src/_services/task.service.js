@@ -20,8 +20,8 @@ function getAll() {
 function createTask(summary) {
     const requestOptions = {
         method: 'POST',
-        headers: authHeader(),
-        body: summary
+        headers: { 'Content-Type': 'application/json', ...authHeader() },
+        body: JSON.stringify({summary})
     };
 
     return fetch(`${config.apiUrl}/tasks`, requestOptions).then(handleResponse);

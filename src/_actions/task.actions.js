@@ -37,7 +37,7 @@ function createTask(summary) {
 
         taskService.createTask(summary)
             .then(
-                tasks => dispatch(success(task)),
+                task => dispatch(success(task)),
                 error => dispatch(failure(error.toString()))
             );
     };
@@ -47,7 +47,7 @@ function createTask(summary) {
         console.log(`CREATE task service:`, task)
         return { type: taskConstants.CREATE_SUCCESS, task }
      }
-    function failure(error) { return { type: taskConstants.GETALL_FAILURE, error } }    
+    function failure(error) { return { type: taskConstants.CREATE_FAILURE, error } }    
 }
 // prefixed function name with underscore because delete is a reserved word in javascript
 
