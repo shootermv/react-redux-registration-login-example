@@ -52,14 +52,18 @@ export function tasks(state = {}, action) {
     // CREATE
     case taskConstants.CREATE_REQUEST:
       return {
+        ...state,
         loading: true
       };
     case taskConstants.CREATE_SUCCESS:
+      console.log('REDUCER:', state)      
       return {
+        ...state,  
         items: [
             action.task, 
-            ...action.tasks
-        ]
+            ...state.items
+        ],
+        loading:false
       };
     case taskConstants.CREATE_FAILURE:
       return { 
