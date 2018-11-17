@@ -55,8 +55,7 @@ export function tasks(state = {}, action) {
         ...state,
         loading: true
       };
-    case taskConstants.CREATE_SUCCESS:
-      console.log('REDUCER:', state)      
+    case taskConstants.CREATE_SUCCESS:    
       return {
         ...state,  
         items: [

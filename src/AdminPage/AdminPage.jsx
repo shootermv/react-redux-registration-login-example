@@ -48,14 +48,14 @@ class AdminPage extends React.Component {
                  <h3>All tasks:</h3>
                 {tasks.loading && <em>Loading tasks...</em>}
                 {tasks.error && <span className="text-danger">ERROR: {tasks.error}</span>}
-                {tasks.items &&
+                {tasks.items && tasks.items.length ?
                     <ul>
                         {tasks.items.map((task, index) =>
                             <li key={task.id}>
                                 {task.summary}
                             </li>
                         )}
-                    </ul>
+                    </ul> : 'No tasks yet'
                 }    
                 <hr/>   
                 <h3>All registered users:</h3>
