@@ -8,7 +8,8 @@ export const userActions = {
     logout,
     register,
     getAll,
-    delete: _delete
+    delete: _delete,
+    assign
 };
 
 function login(username, password) {
@@ -92,4 +93,22 @@ function _delete(id) {
     function request(id) { return { type: userConstants.DELETE_REQUEST, id } }
     function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
+}
+
+function assign(user, task) {
+    console.log('action called', user, task);
+    return { type: userConstants.ASSIGN_REQUEST };
+    /*return dispatch => {
+        dispatch(request(id));
+
+        userService.assign(user, task)
+            .then(
+                user => dispatch(success(id)),
+                error => dispatch(failure(id, error.toString()))
+            );
+    };
+
+    function request(id) { return { type: userConstants.ASSIGN_REQUEST, id } }
+    function success(id) { return { type: userConstants.ASSIGN_SUCCESS, id } }
+    function failure(id, error) { return { type: userConstants.ASSIGN_FAILURE, id, error } }*/
 }

@@ -29,7 +29,8 @@ class AdminPage extends React.Component {
     
     handleAssignTaskToUser(user, task, e) {
         e.preventDefault();
-        console.log(user, task)
+        console.log(user, task);
+        this.props.dispatch(userActions.assign(user, task));
     }
 
     componentDidMount() {
