@@ -13,6 +13,7 @@ class AdminPage extends React.Component {
           summary: '',
         };
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleAssignTaskToUser = this.handleAssignTaskToUser.bind(this);
         this.save = this.save.bind(this);
     }
 
@@ -26,6 +27,11 @@ class AdminPage extends React.Component {
         });
     }
     
+    handleAssignTaskToUser(user, task, e) {
+        e.preventDefault();
+        console.log(user, task)
+    }
+
     componentDidMount() {
         this.props.dispatch(userActions.getAll());
         this.props.dispatch(taskActions.getAll());
@@ -52,7 +58,8 @@ class AdminPage extends React.Component {
                     <ul>
                         {tasks.items.map((task, index) =>
                             <li key={task.id}>
-                                {task.summary}
+                                {task.summary} 
+                                <a onClick={e => this.handleAssignTaskToUser(users.items[1], task, e)}>Assign</a>
                             </li>
                         )}
                     </ul> : 'No tasks yet'
