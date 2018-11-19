@@ -44,6 +44,22 @@ export function users(state = {}, action) {
           return user;
         })
       };
+
+    case userConstants.ASSIGN_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case userConstants.ASSIGN_SUCCESS:
+      return {
+        ...state,
+        loading: false
+      };
+    case userConstants.ASSIGN_FAILURE:
+      return {
+        ...state,
+        loading: false
+      };
     default:
       return state
   }

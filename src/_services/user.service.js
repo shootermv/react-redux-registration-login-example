@@ -8,7 +8,8 @@ export const userService = {
     getAll,
     getById,
     update,
-    delete: _delete
+    delete: _delete,
+    assign
 };
 
 function login(username, password) {
@@ -82,6 +83,16 @@ function _delete(id) {
     };
 
     return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+}
+
+function assign(user, task) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({user, task})
+    };
+
+    return fetch(`${config.apiUrl}/users/task`, requestOptions).then(handleResponse);  
 }
 
 function handleResponse(response) {

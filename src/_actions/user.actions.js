@@ -2,6 +2,10 @@ import { userConstants } from '../_constants';
 import { userService } from '../_services';
 import { alertActions } from './';
 import { history } from '../_helpers';
+import { taskActions } from './task.actions';
+
+
+
 
 export const userActions = {
     login,
@@ -97,18 +101,21 @@ function _delete(id) {
 
 function assign(user, task) {
     console.log('action called', user, task);
-    return { type: userConstants.ASSIGN_REQUEST };
-    /*return dispatch => {
-        dispatch(request(id));
+    
+    return dispatch => {
+        dispatch(request());
 
         userService.assign(user, task)
             .then(
-                user => dispatch(success(id)),
-                error => dispatch(failure(id, error.toString()))
+                () => {
+                     dispatch(taskActions.getAll());
+                     dispatch(success());   
+                },
+                error => dispatch(failure( error.toString()))
             );
     };
 
-    function request(id) { return { type: userConstants.ASSIGN_REQUEST, id } }
-    function success(id) { return { type: userConstants.ASSIGN_SUCCESS, id } }
-    function failure(id, error) { return { type: userConstants.ASSIGN_FAILURE, id, error } }*/
+    function request() { return { type: userConstants.ASSIGN_REQUEST} }   
+    function success() { return { type: userConstants.ASSIGN_SUCCESS } } 
+    function failure(error) { return { type: userConstants.ASSIGN_FAILURE, error } }
 }
