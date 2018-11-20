@@ -26,13 +26,12 @@ export function authentication(state = initialState, action) {
         loading: true
       };
     case userConstants.CHANGE_STATUS_SUCCESS:
-    console.log('reducer: chnage status success')
       return {
         ...state,
         loading: false,
         user: { ...state.user, tasks: state.user.tasks.map(task =>
-          task.id === action.task.id
-            ? { ...task }
+          task._id === action.task._id
+            ? { ...action.task }
             : task
         )}
       };
