@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 
 class PrivatePage extends React.Component {
+
     componentDidMount() {
         this.props.dispatch(userActions.getAll());
     }
 
-    handleDeleteUser(id) {
-        return (e) => this.props.dispatch(userActions.delete(id));
+    changeStatus(task, e) {
+        return () => this.props.dispatch(userActions.changeStatus(task));
     }
 
     render() {
@@ -26,7 +27,7 @@ class PrivatePage extends React.Component {
                     <ul>
                         {user.tasks.map((task, index) =>
                             <li key={task._id}>
-                                {task.summary}                       
+                                {task.summary} <a onClick={this.changeStatus(task)}>{task.status === 0 ? 'new' : task.status === 1 ? 'in process' : 'done'}</a>                      
                             </li>
                         )}
                     </ul> : 'No tasks yet'

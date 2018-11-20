@@ -13,7 +13,8 @@ export const userActions = {
     register,
     getAll,
     delete: _delete,
-    assign
+    assign,
+    changeStatus
 };
 
 function login(username, password) {
@@ -100,7 +101,6 @@ function _delete(id) {
 }
 
 function assign(user, task) {
-    console.log('action called', user, task);
     
     return dispatch => {
         dispatch(request());
@@ -118,4 +118,25 @@ function assign(user, task) {
     function request() { return { type: userConstants.ASSIGN_REQUEST} }   
     function success() { return { type: userConstants.ASSIGN_SUCCESS } } 
     function failure(error) { return { type: userConstants.ASSIGN_FAILURE, error } }
+}
+
+function changeStatus(task) {
+    console.log('action!', task);
+    task.status = task.status >= 2 ? 0 : task.status + 1;
+    return { type: userConstants.CHANGE_STATUS_SUCCESS, task}
+    /*return dispatch => {
+        dispatch(request());
+
+        userService.changeStatus(task)
+            .then(
+                () => {
+                     dispatch(taskActions.getAll())
+             ,
+                error => dispatch(failure( error.toString()))
+            );
+    };
+
+    function request() { return { type: userConstants.CHANGE_STATUS_REQUEST} }   
+    function success() { return { type: userConstants.CHANGE_STATUS_SUCCESS, task} } 
+    function failure(error) { return { type: userConstants.CHANGE_STATUS_FAILURE, error } }*/    
 }

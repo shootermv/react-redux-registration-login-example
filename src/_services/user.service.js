@@ -9,7 +9,8 @@ export const userService = {
     getById,
     update,
     delete: _delete,
-    assign
+    assign,
+    changeStatus
 };
 
 function login(username, password) {
@@ -111,4 +112,14 @@ function handleResponse(response) {
 
         return data;
     });
+}
+
+function changeStatus(task) {
+    const requestOptions = {
+        method: 'PUT',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(task)
+    };
+
+    return fetch(`${config.apiUrl}/users/task`, requestOptions).then(handleResponse);  
 }

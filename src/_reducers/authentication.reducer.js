@@ -19,6 +19,30 @@ export function authentication(state = initialState, action) {
       return {};
     case userConstants.LOGOUT:
       return {};
+   // STATUS
+    case userConstants.CHANGE_STATUS_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case userConstants.CHANGE_STATUS_SUCCESS:
+    console.log('reducer: chnage status success')
+      return {
+        ...state,
+        loading: false,
+        user: { ...state.user, tasks: state.user.tasks.map(task =>
+          task.id === action.task.id
+            ? { ...task }
+            : task
+        )}
+      };
+    case userConstants.CHANGE_STATUS_FAILURE:
+      return {
+        ...state,
+        loading: false
+      };
+
+
     default:
       return state
   }
