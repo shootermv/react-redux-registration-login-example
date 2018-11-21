@@ -10,8 +10,8 @@ class PrivatePage extends React.Component {
         this.props.dispatch(userActions.getAll());
     }
 
-    changeStatus(task, e) {
-        return () => this.props.dispatch(userActions.changeStatus(task));
+    changeStatus(user, task) {
+        return () => this.props.dispatch(userActions.changeStatus(user, task));
     }
 
     render() {
@@ -27,7 +27,7 @@ class PrivatePage extends React.Component {
                     <ul>
                         {user.tasks.map((task, index) =>
                             <li key={task._id}>
-                                {task.summary} <a onClick={this.changeStatus(task)}>{task.status === 0 ? 'new' : task.status === 1 ? 'in process' : 'done'}</a>                      
+                                {task.summary} <a onClick={this.changeStatus(user, task)}>{task.status === 0 ? 'new' : task.status === 1 ? 'in process' : 'done'}</a>                      
                             </li>
                         )}
                     </ul> : 'No tasks yet'

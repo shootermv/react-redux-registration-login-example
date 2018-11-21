@@ -114,12 +114,12 @@ function handleResponse(response) {
     });
 }
 
-function changeStatus(task) {
+function changeStatus(user, task) {
     const requestOptions = {
         method: 'PUT',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(task)
+        body: JSON.stringify({user, task})
     };
 
-    return fetch(`${config.apiUrl}/users/task`, requestOptions).then(handleResponse);  
+    return fetch(`${config.apiUrl}/users/task/${user._id}`, requestOptions).then(handleResponse);  
 }

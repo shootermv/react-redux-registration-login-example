@@ -25,7 +25,7 @@ export function authentication(state = initialState, action) {
         ...state,
         loading: true
       };
-    case userConstants.CHANGE_STATUS_SUCCESS:
+    case userConstants.CHANGE_STATUS_SUCCESS:     
       return {
         ...state,
         loading: false,

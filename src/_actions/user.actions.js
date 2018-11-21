@@ -120,20 +120,20 @@ function assign(user, task) {
     function failure(error) { return { type: userConstants.ASSIGN_FAILURE, error } }
 }
 
-function changeStatus(task) {
+function changeStatus(user, task) {
     const taskCopy = { ...task, status:  task.status >= 2 ? 0 : task.status + 1};
 
     return dispatch => {
         dispatch(request());
 
-        userService.changeStatus(taskCopy)
+        userService.changeStatus(user, taskCopy)
             .then(
-                () => dispatch(success(taskCopy)),
+                (resTask) => dispatch(success(resTask)),
                 error => dispatch(failure( error.toString()))
             );
     };
 
     function request() { return { type: userConstants.CHANGE_STATUS_REQUEST} }   
-    function success(newtask) { return { type: userConstants.CHANGE_STATUS_SUCCESS, newtask} } 
+    function success(newTask) { return { type: userConstants.CHANGE_STATUS_SUCCESS, task: newTask} } 
     function failure(error) { return { type: userConstants.CHANGE_STATUS_FAILURE, error } }
 }
