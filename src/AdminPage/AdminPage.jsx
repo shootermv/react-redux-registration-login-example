@@ -41,6 +41,7 @@ class AdminPage extends React.Component {
     save(e) {
         e.preventDefault();
         this.state.summary && this.props.dispatch(taskActions.createTask(this.state.summary));
+        this.setState({summary:''});
     }
 
     render() {
