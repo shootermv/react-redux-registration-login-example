@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { userActions, taskActions } from '../_actions';
 
 
@@ -53,7 +52,7 @@ class AdminPage extends React.Component {
                     <button onClick={e => this.save(e)}>Save</button>
                 </form>
                 <hr/>
-                 <h3>All tasks:</h3>
+                 <h3>Unassigned tasks:</h3>
                 {tasks.loading && <em>Loading tasks...</em>}
                 {tasks.error && <span className="text-danger">ERROR: {tasks.error}</span>}
                 {tasks.items && tasks.items.length ?
@@ -67,17 +66,21 @@ class AdminPage extends React.Component {
                     </ul> : 'No tasks yet'
                 }    
                 <hr/>   
-                <h3>All registered users:</h3>
+                <h3>Developers:</h3>
                 {users.loading && <em>Loading users...</em>}
                 {users.error && <span className="text-danger">ERROR: {users.error}</span>}
                 {users.items &&
-                    <ul>
-                        {users.items.map((user, index) =>
-                            <li key={user.id}>
-                                {user.firstName + ' ' + user.lastName}
-                            </li>
+                    <div className='row'>
+                        {users.items.filter(u => u.role !== 'admin').map((user, index) =>
+                            <div key={user.id} className='col-xs-4'>
+                                <div>{user.firstName + ' ' + user.lastName}</div>
+                                <div className='well'>
+                                tasks
+                                </div>
+
+                            </div>
                         )}
-                    </ul>
+                    </div>
                 }
         </div>);
     }
