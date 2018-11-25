@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions, taskActions } from '../_actions';
-
-
+import {DeveloperDropZone} from './DeveloperDropZone';
+ 
 class AdminPage extends React.Component {
     constructor(props) {
         super(props);
@@ -75,7 +75,7 @@ class AdminPage extends React.Component {
                             <div key={user.id} className='col-xs-4'>
                                 <div>{user.firstName + ' ' + user.lastName}</div>
                                 <div className='well'>
-                                tasks
+                                 <DeveloperDropZone/>
                                 </div>
 
                             </div>
