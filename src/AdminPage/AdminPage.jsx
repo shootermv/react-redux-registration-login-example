@@ -58,7 +58,7 @@ class AdminPage extends React.Component {
                 {tasks.items && tasks.items.length ?
                     <ul>
                         {tasks.items.map((task, index) =>
-                            <li key={task.id}>
+                            <li key={task.id} draggable="true">
                                 {task.summary} 
                                 <a onClick={e => this.handleAssignTaskToUser(users.items[1], task, e)}>Assign</a>
                             </li>
