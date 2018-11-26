@@ -8,7 +8,7 @@ class DeveloperDropZone extends React.Component {
             <div className='col-xs-4'>
                <div>{user.firstName + ' ' + user.lastName}</div>
                <div className='well'>
-               {user.tasks && user.tasks.length>0 ? user.tasks.map(task => <li>{task.summary}</li>):'no tasks yet'}
+               {user.tasks && user.tasks.length>0 ? user.tasks.map(task => <li key={task._id}>{task.summary}</li>):'no tasks yet'}
                </div>
             </div>
         );
