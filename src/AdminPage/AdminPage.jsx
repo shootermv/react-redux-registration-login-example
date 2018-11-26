@@ -72,13 +72,7 @@ class AdminPage extends React.Component {
                 {users.items &&
                     <div className='row'>
                         {users.items.filter(u => u.role !== 'admin').map((user, index) =>
-                            <div key={user.id} className='col-xs-4'>
-                                <div>{user.firstName + ' ' + user.lastName}</div>
-                                <div className='well'>
-                                 <DeveloperDropZone/>
-                                </div>
-
-                            </div>
+                            <DeveloperDropZone user={user} key={user.id} />
                         )}
                     </div>
                 }

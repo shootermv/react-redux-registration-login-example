@@ -5,8 +5,11 @@ class DeveloperDropZone extends React.Component {
     render() {
         const { user} = this.props;
         return (
-            <div>
-               developer
+            <div className='col-xs-4'>
+               <div>{user.firstName + ' ' + user.lastName}</div>
+               <div className='well'>
+               {user.tasks && user.tasks.length>0 ? user.tasks.map(task => <li>{task.summary}</li>):'no tasks yet'}
+               </div>
             </div>
         );
     }
