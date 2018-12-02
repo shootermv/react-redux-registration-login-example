@@ -13,6 +13,7 @@ class AdminPage extends React.Component {
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleAssignTaskToUser = this.handleAssignTaskToUser.bind(this);
+        this.dragStartHandler = this.dragStartHandler.bind(this);
         this.save = this.save.bind(this);
     }
 
@@ -28,13 +29,17 @@ class AdminPage extends React.Component {
     
     handleAssignTaskToUser(user, task, e) {
         e && e.preventDefault();
-        console.log(user, task);
-        this.props.dispatch(userActions.assign(user, task));
+        console.log(user, this.props.draggedTask);
+       /* this.props.dispatch(userActions.assign(user, task));*/
     }
 
     componentDidMount() {
         this.props.dispatch(userActions.getAll());
         this.props.dispatch(taskActions.getAll());
+    }
+    
+    dragStartHandler(task) {
+        this.props.dispatch(taskActions.taskStartedDragging(task));
     }
 
     save(e) {
@@ -58,7 +63,7 @@ class AdminPage extends React.Component {
                 {tasks.items && tasks.items.length ?
                     <ul>
                         {tasks.items.map((task, index) =>
-                            <li key={task.id} draggable="true">
+                            <li key={task.id} draggable="true" onDragStart={e => this.dragStartHandler(task)}>
                                 {task.summary} 
                                 <a onClick={e => this.handleAssignTaskToUser(users.items[1], task, e)}>Assign</a>
                             </li>
@@ -72,7 +77,7 @@ class AdminPage extends React.Component {
                 {users.items &&
                     <div className='row'>
                         {users.items.filter(u => u.role !== 'admin').map((user, index) =>
-                            <DeveloperDropZone user={user} key={user.id} />
+                            <DeveloperDropZone user={user} key={user.id} assignTaskToUser={this.handleAssignTaskToUser}/>
                         )}
                     </div>
                 }
@@ -80,12 +85,13 @@ class AdminPage extends React.Component {
     }
 }
 function mapStateToProps(state) {
-    const { users, authentication, tasks } = state;
+    const { users, authentication, tasks, draggedTask } = state;
     const { user } = authentication;
     return {
         user,
         users,
-        tasks
+        tasks,
+        draggedTask: tasks.draggedTask
     };
 }
 

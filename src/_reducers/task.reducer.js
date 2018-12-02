@@ -68,7 +68,20 @@ export function tasks(state = {}, action) {
       return { 
         error: action.error
       };    
-    
+
+      
+    // DRAGGING
+    case taskConstants.STARTED_DRAGGING:
+      return {
+        ...state,
+        draggedTask: action.task
+      }; 
+    case taskConstants.TASK_DROPPED:
+      return { 
+        ...state,
+        draggedTask: null
+      };
+
     default:
       return state
   }

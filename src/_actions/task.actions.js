@@ -8,7 +8,8 @@ import { history } from '../_helpers';
 export const taskActions = {
     getAll,
     createTask,
-    delete: _delete
+    delete: _delete,
+    taskStartedDragging
 };
 
 
@@ -65,4 +66,9 @@ function _delete(id) {
     function request(id) { return { type: taskConstants.DELETE_REQUEST, id } }
     function success(id) { return { type: taskConstants.DELETE_SUCCESS, id } }
     function failure(id, error) { return { type: taskConstants.DELETE_FAILURE, id, error } }
+}
+
+
+function taskStartedDragging(task) {
+    return { type: taskConstants.STARTED_DRAGGING, task }
 }
