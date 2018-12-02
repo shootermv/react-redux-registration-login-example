@@ -4,9 +4,6 @@ import { alertActions } from './';
 import { history } from '../_helpers';
 import { taskActions } from './task.actions';
 
-
-
-
 export const userActions = {
     login,
     logout,
@@ -109,6 +106,7 @@ function assign(user, task) {
             .then(
                 () => {
                      dispatch(taskActions.getAll());
+                     dispatch(getAll());
                      dispatch(success());   
                 },
                 error => dispatch(failure( error.toString()))
