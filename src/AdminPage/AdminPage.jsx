@@ -63,8 +63,8 @@ class AdminPage extends React.Component {
                     <ul>
                         {tasks.items.map((task, index) =>
                             <li key={task.id} draggable="true" onDragStart={e => this.dragStartHandler(task)}>
-                                {task.summary} 
-                                <a onClick={e => this.handleAssignTaskToUser(users.items[1], task, e)}>Assign</a>
+                                <span className="glyphicon glyphicon-th-list"></span> {task.summary} 
+                                <a onClick={e => this.handleAssignTaskToUser(users.items[1], task, e)}><span className="glyphicon glyphicon-remove"></span></a>
                             </li>
                         )}
                     </ul> : 'No tasks yet'
