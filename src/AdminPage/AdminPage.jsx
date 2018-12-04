@@ -7,13 +7,15 @@ import {DeveloperDropZone} from './DeveloperDropZone';
 class AdminPage extends React.Component {
     constructor(props) {
         super(props);
-        this.reload = false;
+
         this.state = {
           summary: '',
         };
+
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleAssignTaskToUser = this.handleAssignTaskToUser.bind(this);
         this.dragStartHandler = this.dragStartHandler.bind(this);
+        this.deleteTask = this.deleteTask.bind(this);
         this.save = this.save.bind(this);
     }
 
@@ -30,6 +32,11 @@ class AdminPage extends React.Component {
     handleAssignTaskToUser(user, e) {
         e && e.preventDefault();
         this.props.dispatch(userActions.assign(user, this.props.draggedTask));
+    }
+
+    deleteTask(task, e) {
+        e && e.preventDefault();
+        console.log('deleting task', task._id)
     }
 
     componentDidMount() {
@@ -64,7 +71,7 @@ class AdminPage extends React.Component {
                         {tasks.items.map((task, index) =>
                             <li key={task.id} draggable="true" onDragStart={e => this.dragStartHandler(task)}>
                                 <span className="glyphicon glyphicon-th-list"></span> {task.summary} 
-                                <a onClick={e => this.handleAssignTaskToUser(users.items[1], task, e)}><span className="glyphicon glyphicon-remove"></span></a>
+                                <a onClick={e => this.deleteTask(task, e)}><span className="glyphicon glyphicon-remove"></span></a>
                             </li>
                         )}
                     </ul> : 'No tasks yet'
