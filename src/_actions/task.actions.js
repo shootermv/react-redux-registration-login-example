@@ -45,7 +45,6 @@ function createTask(summary) {
 
     function request(summary) { return { type: taskConstants.CREATE_REQUEST, summary } }
     function success(task) { 
-        console.log(`CREATE task service:`, task)
         return { type: taskConstants.CREATE_SUCCESS, task }
      }
     function failure(error) { return { type: taskConstants.CREATE_FAILURE, error } }    
@@ -58,7 +57,7 @@ function _delete(id) {
 
         taskService.delete(id)
             .then(
-                task => dispatch(success(id)),
+                () => dispatch(success(id)),
                 error => dispatch(failure(id, error.toString()))
             );
     };
