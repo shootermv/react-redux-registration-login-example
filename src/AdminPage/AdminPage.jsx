@@ -36,7 +36,7 @@ class AdminPage extends React.Component {
 
     deleteTask(task, e) {
         e && e.preventDefault();
-        console.log('deleting task', task._id)
+        this.props.dispatch(taskActions.delete(task._id));;
     }
 
     componentDidMount() {
