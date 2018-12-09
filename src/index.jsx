@@ -8,6 +8,8 @@ import { App } from './App';
 // setup fake backend
 import { configureFakeBackend } from './_helpers';
 // configureFakeBackend();
+/*import openSocket from 'socket.io-client';
+const  socket = openSocket('http://localhost:8000');*/
 
 render(
     <Provider store={store}>
