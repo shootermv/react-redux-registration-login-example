@@ -10,16 +10,24 @@ import { AdminPage } from '../AdminPage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { PrivatePage } from '../PrivatePage';
+import socketIOClient from "socket.io-client";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            response: false,
+            endpoint: "http://localhost:4000"
+        };
         const { dispatch } = this.props;
         history.listen((location, action) => {
             // clear alert on location change
             dispatch(alertActions.clear());
         });
+
+        const { endpoint } = this.state;
+        const socket = socketIOClient(endpoint);
+        socket.on("FromAPI", data => this.setState({ response: data }));
     }
 
     render() {
