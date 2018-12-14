@@ -27,8 +27,8 @@ class App extends React.Component {
 
         const { endpoint } = this.state;
         const socket = socketIOClient(endpoint);
-        socket.on("FromAPI", data => {
-            console.log('from api!!!!!!!')
+        socket.on("status-change", data => {
+            console.log('from socket:', data)
             this.setState({ response: data })
         });
     }

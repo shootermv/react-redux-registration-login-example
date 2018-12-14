@@ -6,24 +6,15 @@ class DeveloperDropZone extends React.Component {
         super(props);
         this.onDragOver = this.onDragOver.bind(this);
         this.onDragEnter = this.onDragEnter.bind(this);
-        this.onFileDrop = this.onFileDrop.bind(this);
     }
+    onDragOver (e)  {	
+        e.stopPropagation();	
+        e.preventDefault();	
+    }	
 
-    onDragOver (e)  {
-        e.stopPropagation();
-        e.preventDefault();
-    }
-    
-    onDragEnter (e)  {
-        e.stopPropagation();
-    }
-    
-    onFileDrop (e) {
-        e.stopPropagation();
-
-        console.log("onFileDrop");
-        alert("dropped")
-    }
+     onDragEnter (e)  {	
+        e.stopPropagation();	
+    }	
 
     render() {
         const { user} = this.props;
@@ -34,7 +25,7 @@ class DeveloperDropZone extends React.Component {
             onDrop={e => this.props.assignTaskToUser(user, e)}>
                <div>{user.firstName + ' ' + user.lastName}</div>
                <div className='well'>
-               {user.tasks && user.tasks.length>0 ? user.tasks.map(task => <li key={task._id} draggable="true">{task.summary}</li>):'no tasks yet'}
+               {user.tasks && user.tasks.length>0 ? user.tasks.map(({_id, summary, status}) => <li key={_id} draggable="true">{summary} {status}</li>):'no tasks yet'}
                </div>
             </div>
         );
