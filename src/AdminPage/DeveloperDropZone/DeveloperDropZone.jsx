@@ -17,12 +17,12 @@ class DeveloperDropZone extends React.Component {
     }	
 
     render() {
-        const { user} = this.props;
+        const { user, assignTaskToUser } = this.props;
         return (
             <div className='col-xs-4' 
             onDragEnter={this.onDragEnter}
             onDragOver={this.onDragOver}
-            onDrop={e => this.props.assignTaskToUser(user, e)}>
+            onDrop={e => assignTaskToUser(user, e)}>
                <div>{user.firstName + ' ' + user.lastName}</div>
                <div className='well'>
                {user.tasks && user.tasks.length>0 ? user.tasks.map(({_id, summary, status}) => <li key={_id} draggable="true">{summary} {status}</li>):'no tasks yet'}
