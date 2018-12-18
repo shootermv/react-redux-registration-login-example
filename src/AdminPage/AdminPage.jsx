@@ -3,14 +3,24 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions, taskActions } from '../_actions';
 import {DeveloperDropZone} from './DeveloperDropZone';
- 
+import socketIOClient from "socket.io-client";
+
 class AdminPage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
           summary: '',
-        };
+          response: false,
+          endpoint: "http://localhost:4000"
+        }
+        
+        const { endpoint } = this.state;
+        const socket = socketIOClient(endpoint);
+        socket.on("status-change", data => {
+            console.log('from socket:', data)
+            this.setState({ response: data })
+        });
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleAssignTaskToUser = this.handleAssignTaskToUser.bind(this);
