@@ -91,13 +91,12 @@ class AdminPage extends React.Component {
     }
 }
 function mapStateToProps(state) {
-    const { users, authentication, tasks, draggedTask } = state;
-    const { user } = authentication;
+    const { users, authentication:{user}, tasks, tasks:{draggedTask} } = state;
     return {
         user,
         users,
         tasks,
-        draggedTask: tasks.draggedTask
+        draggedTask
     };
 }
 
