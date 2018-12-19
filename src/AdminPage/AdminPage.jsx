@@ -65,8 +65,9 @@ class AdminPage extends React.Component {
     }
 
     render() {
-        const { user, users, tasks } = this.props;
+        const { admin, users, tasks } = this.props;
         return (<div>
+                <h1>Hi {admin.firstName}!</h1>
                 <form>
                     <input name="summary" name="summary" value={this.state.summary} placeholder="what is the task"
          onChange={this.handleInputChange}/>
@@ -101,9 +102,9 @@ class AdminPage extends React.Component {
     }
 }
 function mapStateToProps(state) {
-    const { users, authentication:{user}, tasks, tasks:{draggedTask} } = state;
+    const { users, authentication:{user: admin}, tasks, tasks:{draggedTask} } = state;
     return {
-        user,
+        admin,
         users,
         tasks,
         draggedTask
