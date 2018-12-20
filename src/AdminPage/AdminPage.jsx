@@ -17,9 +17,8 @@ class AdminPage extends React.Component {
         
         const { endpoint } = this.state;
         const socket = socketIOClient(endpoint);
-        socket.on("status-change", data => {
-            console.log('from socket:', data)
-            this.setState({ response: data })
+        socket.on("status-change", () => {        
+            this.props.dispatch(userActions.getAll());
         });
 
         this.handleInputChange = this.handleInputChange.bind(this);
