@@ -19,6 +19,26 @@ export function authentication(state = initialState, action) {
       return {};
     case userConstants.LOGOUT:
       return {};
+
+   // GET USER
+    case userConstants.GETUSER_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };    
+    case userConstants.GETUSER_SUCCESS:
+      return {
+        ...state,
+        user: action.user,
+        loading: false
+      };   
+    case userConstants.GETUSER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      };
+
    // STATUS
     case userConstants.CHANGE_STATUS_REQUEST:
       return {

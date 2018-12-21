@@ -1,10 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import socketIOClient from "socket.io-client";
 import { userActions } from '../_actions';
 
 class PrivatePage extends React.Component {
+
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            summary: '',
+            response: false,
+            endpoint: "http://localhost:4000"
+          }
+          
+          const { endpoint } = this.state;
+          const socket = socketIOClient(endpoint);
+          socket.on("task-assigned", () => {   console.log('happend!')     
+              this.props.dispatch(userActions.getById(this.props.user._id));
+          });        
+    }
 
     componentDidMount() {
         this.props.dispatch(userActions.getAll());

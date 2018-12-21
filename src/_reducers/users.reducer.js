@@ -58,7 +58,8 @@ export function users(state = {}, action) {
     case userConstants.ASSIGN_FAILURE:
       return {
         ...state,
-        loading: false
+        loading: false,
+        error: action.error
       };
     default:
       return state

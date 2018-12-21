@@ -9,10 +9,31 @@ export const userActions = {
     logout,
     register,
     getAll,
+    getById,
     delete: _delete,
     assign,
     changeStatus
 };
+
+function getById(id) {
+    return dispatch => {
+        dispatch(request({id}));
+
+        userService.getById(id)
+            .then(
+                user => { 
+                    dispatch(success(user));                   
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );        
+    };
+    function request(id) { return { type: userConstants.GETUSER_REQUEST, id } }
+    function success(user) { return { type: userConstants.GETUSER_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.GETUSER_FAILURE, error } }    
+}
 
 function login(username, password) {
     return dispatch => {
