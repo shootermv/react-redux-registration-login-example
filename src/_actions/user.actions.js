@@ -43,7 +43,11 @@ function login(username, password) {
             .then(
                 user => { 
                     dispatch(success(user));
-                    history.push('/');
+                    if (user.role === 'admin') {
+                        history.push('/admin');
+                    } else {
+                        history.push('/private');
+                    }
                 },
                 error => {
                     dispatch(failure(error.toString()));
