@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { history } from '../_helpers';
 import { userActions } from '../_actions';
 
 class HomePage extends React.Component {
+    componentWillMount() {
+        this.props.user.role === 'admin' ? history.push('/admin') : history.push('/private');
+    }
     componentDidMount() {
         this.props.dispatch(userActions.getAll());
     }
