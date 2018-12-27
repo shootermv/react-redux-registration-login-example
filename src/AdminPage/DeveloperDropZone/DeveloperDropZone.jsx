@@ -7,12 +7,13 @@ class DeveloperDropZone extends React.Component {
         this.onDragOver = this.onDragOver.bind(this);
         this.onDragEnter = this.onDragEnter.bind(this);
     }
+    
     onDragOver (e)  {	
         e.stopPropagation();	
         e.preventDefault();	
     }	
 
-     onDragEnter (e)  {	
+    onDragEnter (e)  {	
         e.stopPropagation();	
     }	
 
