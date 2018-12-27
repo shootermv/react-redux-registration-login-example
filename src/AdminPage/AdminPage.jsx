@@ -52,8 +52,9 @@ class AdminPage extends React.Component {
         this.props.dispatch(taskActions.getAll());
     }
     
-    dragStartHandler(task) {
+    dragStartHandler(task, ev) {
         this.props.dispatch(taskActions.taskStartedDragging(task));
+        ev.dataTransfer.setData("text", ev.target.id);       
     }
 
     save(e) {
@@ -78,7 +79,7 @@ class AdminPage extends React.Component {
                 {tasks.items && tasks.items.length ?
                     <ul>
                         {tasks.items.map((task, index) =>
-                            <li key={task.id} draggable="true" onDragStart={e => this.dragStartHandler(task)}>
+                            <li key={task.id} draggable="true" onDragStart={ev => this.dragStartHandler(task, ev)}>
                                 <span className="glyphicon glyphicon-th-list"></span> {task.summary} 
                                 <a onClick={e => this.deleteTask(task, e)}><span className="glyphicon glyphicon-remove"></span></a>
                             </li>
