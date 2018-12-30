@@ -23,7 +23,7 @@ class PrivatePage extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(userActions.getAll());
+        this.props.dispatch(userActions.getById(this.props.user._id));
     }
 
     changeStatus(user, task) {
@@ -37,8 +37,6 @@ class PrivatePage extends React.Component {
                 <h1>Hi {user.firstName}!</h1>
                 <p>You're logged in with React!!</p>
                 <h3>Tasks for you:</h3>
-                {users.loading && <em>Loading users...</em>}
-                {users.error && <span className="text-danger">ERROR: {users.error}</span>}
                 {user.tasks && user.tasks.length ?
                     <ul>
                         {user.tasks.map((task, index) =>
@@ -57,11 +55,10 @@ class PrivatePage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { users, authentication } = state;
-    const { user } = authentication;
+    const { authentication: { user } } = state;
+    
     return {
-        user,
-        users
+        user
     };
 }
 
