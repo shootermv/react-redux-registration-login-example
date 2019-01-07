@@ -1,13 +1,13 @@
-import * as actions from './alert.actions';
-import * as types from '../_constants/alert.constants';
+import { alertActions as actions } from './alert.actions';
+import { alertConstants  as types } from '../_constants/alert.constants';
 
 describe('actions', () => {
   it('should create an action success', () => {
     const message = 'success!'
     const expectedAction = {
-      type: types.alertConstants.SUCCESS,
+      type: types.SUCCESS,
       message
     }
-    expect(actions.alertActions.success(message)).toEqual(expectedAction)
+    expect(actions.success(message)).toEqual(expectedAction)
   })
 })
