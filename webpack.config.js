@@ -1,5 +1,6 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: './src/index.jsx',
@@ -26,7 +27,7 @@ module.exports = {
         template: './src/index.html',
         filename: 'index.html',
         inject: 'body'
-    })],
+    }), new Dotenv()],
     devServer: {
         historyApiFallback: true
     },

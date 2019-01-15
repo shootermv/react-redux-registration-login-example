@@ -39,3 +39,6 @@ typings
 
 # ignore jest snapshots
 __snapshots__
+
+# env files
+.env*
