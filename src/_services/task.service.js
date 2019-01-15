@@ -1,4 +1,4 @@
-import config from 'config';
+// import config from 'config';
 import { authHeader } from '../_helpers';
 
 export const taskService = {
@@ -14,7 +14,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/tasks`, requestOptions).then(handleResponse);
+    return fetch(`${process.env.API_URL}/tasks`, requestOptions).then(handleResponse);
 }
 
 function createTask(summary) {
@@ -24,7 +24,7 @@ function createTask(summary) {
         body: JSON.stringify({summary})
     };
 
-    return fetch(`${config.apiUrl}/tasks`, requestOptions).then(handleResponse);
+    return fetch(`${process.env.API_URL}/tasks`, requestOptions).then(handleResponse);
 }
 
 function _delete(id) {
@@ -33,7 +33,7 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/tasks/${id}`, requestOptions).then(handleResponse);
+    return fetch(`${process.env.API_URL}/tasks/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
