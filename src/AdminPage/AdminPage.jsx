@@ -35,28 +35,27 @@ class AdminPage extends React.Component {
     
     handleAssignTaskToUser(user, e) {
         e && e.preventDefault();
-        this.props.dispatch(userActions.assign(user, this.props.draggedTask));
+        this.props.assign(user, this.props.draggedTask);
     }
 
     deleteTask(task, e) {
         e && e.preventDefault();
-        this.props.dispatch(taskActions.delete(task._id));;
+        this.props.deleteTask(task);
     }
 
     componentDidMount() {
-        this.props.dispatch(userActions.getAll());
-        this.props.dispatch(taskActions.getAll());
+        this.props.getAll();
     }
     
     dragStartHandler(task, ev) {
-        this.props.dispatch(taskActions.taskStartedDragging(task));
+        this.props.taskStartedDragging(task);//.dispatch(taskActions.taskStartedDragging(task));
         ev.dataTransfer.setData("text", ev.target.id);       
     }
 
     save(e) {
         e.preventDefault();
-        this.state.summary && this.props.dispatch(taskActions.createTask(this.state.summary));
-        this.setState({summary:''});
+        this.state.summary && this.props.createTask(this.state.summary);
+        this.setState({summary: ''});
     }
 
     render() {
@@ -107,6 +106,26 @@ function mapStateToProps(state) {
     };
 }
 
+function mapDispatchToProps(dispatch) {
+    return {
+        assign: (user, task) => {
+            dispatch(userActions.assign(user, task))
+        },
+        getAll: () => {
+            dispatch(userActions.getAll());
+            dispatch(taskActions.getAll());
+        },
+        deleteTask: (task) => {
+            dispatch(taskActions.delete(task._id));
+        },
+        taskStartedDragging: (task) => {
+            dispatch(taskActions.taskStartedDragging(task));
+        },
+        createTask: (task) => {
+            dispatch(taskActions.createTask(task));
+        }    
+    }
+}
 
-const connectedAdminPage = connect(mapStateToProps)(AdminPage);
+const connectedAdminPage = connect(mapStateToProps, mapDispatchToProps)(AdminPage);
 export { connectedAdminPage as AdminPage };
