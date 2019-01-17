@@ -11,7 +11,7 @@ import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { PrivatePage } from '../PrivatePage';
 
-class App extends React.Component {
+export class App extends React.Component {
     constructor(props) {
         super(props);
 
@@ -55,5 +55,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedApp = connect(mapStateToProps)(App);
-export { connectedApp as App }; 
+
+export default connect(mapStateToProps)(App); 

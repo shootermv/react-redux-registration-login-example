@@ -1,1 +1,2 @@
-export * from './App';
+import ConnectedApp from './App';
+export {ConnectedApp as App};
