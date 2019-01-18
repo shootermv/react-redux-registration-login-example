@@ -1,7 +1,8 @@
 // test file
 import { shallow, mount, render } from 'enzyme';
 import React from 'react';
-// import {AdminPage}  from '../AdminPage';
+import {AdminPage}  from '../AdminPage';
+
 
 /*test('Should render AdminPage component', () => {
     const testUser = {

@@ -1,6 +1,7 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var Dotenv = require('dotenv-webpack');
+const env = process.env.NODE_ENV;
 
 module.exports = {
     entry: './src/index.jsx',
@@ -27,7 +28,9 @@ module.exports = {
         template: './src/index.html',
         filename: 'index.html',
         inject: 'body'
-    }), new Dotenv()],
+    }), new Dotenv({
+        path: `./.env${env === "production" ? ".prod" : ""}`
+    })],
     devServer: {
         historyApiFallback: true
     },

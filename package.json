@@ -9,7 +9,8 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "test": "jest",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "build": "webpack"
   },
   "dependencies": {
     "history": "^4.6.3",

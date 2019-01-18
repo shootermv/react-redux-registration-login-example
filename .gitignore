@@ -42,3 +42,9 @@ typings
 
 # env files
 .env*
+
+# dist
+dist/
+
+# Ds_store
+.Ds_Store
