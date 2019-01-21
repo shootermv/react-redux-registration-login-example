@@ -130,7 +130,7 @@ function assign(user, task) {
         userService.assign(user, task)
             .then(
                 () => {
-                     dispatch(taskActions.getAll());
+                     dispatch(taskActions.getAll()); // TODO: change this in the future to get tasks of this specific user instead of getting all users
                      dispatch(getAll());
                      dispatch(success());   
                 },
