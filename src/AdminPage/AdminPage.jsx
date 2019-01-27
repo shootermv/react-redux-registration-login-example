@@ -11,7 +11,7 @@ class AdminPage extends React.Component {
         this.state = {
           summary: '',
           response: false,
-          endpoint: "http://localhost:4000"
+          endpoint: `${process.env.API_URL}`
         }
         
         const { endpoint } = this.state;
