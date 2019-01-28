@@ -10,7 +10,9 @@
     "start": "webpack-dev-server --open",
     "test": "jest",
     "test:watch": "npm test -- --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "history": "^4.6.3",
@@ -34,6 +36,7 @@
     "dotenv-webpack": "^1.6.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
+    "gh-pages": "^2.0.1",
     "html-webpack-plugin": "^2.26.0",
     "jest": "^23.6.0",
     "path": "^0.12.7",
