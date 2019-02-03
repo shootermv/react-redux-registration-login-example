@@ -25,6 +25,11 @@ class RegisterPage extends React.Component {
     handleChange(event) {
         const { name, value } = event.target;
         const { user } = this.state;
+        // set role according to checkbox
+        if( name === 'admin-check' ) {
+            user.role = event.target.checked ? 'admin' : 'developer';
+        }
+         
         this.setState({
             user: {
                 ...user,
@@ -79,6 +84,10 @@ class RegisterPage extends React.Component {
                             <div className="help-block">Password is required</div>
                         }
                     </div>
+                    <div className='form-group'>
+                        <label htmlFor="admin-check">is Admin</label>
+                        <input type="checkbox" className="form-control" name="admin-check" onChange={this.handleChange} />
+                    </div>                    
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>
                         {registering && 
