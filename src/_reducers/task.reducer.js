@@ -13,6 +13,7 @@ export function tasks(state = {}, action) {
       };
     case taskConstants.GETALL_FAILURE:
       return { 
+        loading: false,
         error: action.error
       };
 
