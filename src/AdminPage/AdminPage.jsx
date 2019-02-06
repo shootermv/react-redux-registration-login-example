@@ -79,7 +79,7 @@ class AdminPage extends React.Component {
                                 <a onClick={e => this.deleteTask(task, e)}><span className="glyphicon glyphicon-remove"></span></a>
                             </li>
                         )}
-                    </ul> : tasks.items && tasks.items.length===0 && 'No tasks yet'
+                    </ul>: !tasks.loading && tasks.items && tasks.items.length===0 && 'No tasks yet'
                 }    
                 <hr/>   
                 <h3>Developers:</h3>
