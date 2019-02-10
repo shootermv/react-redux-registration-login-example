@@ -13,7 +13,8 @@ class RegisterPage extends React.Component {
                 firstName: '',
                 lastName: '',
                 username: '',
-                password: ''
+                password: '',
+                role: 'developer' // must be "developer" by default
             },
             submitted: false
         };
