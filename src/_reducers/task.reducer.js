@@ -37,7 +37,7 @@ export function tasks(state = {}, action) {
       // remove 'deleting:true' property and add 'deleteError:[error]' property to task
       return {
         ...state,
-        items: state.items.map(user => {
+        items: state.items.map(task => {
           if (task.id === action.id) {
             // make copy of user without 'deleting:true' property
             const { deleting, ...taskCopy } = task;
